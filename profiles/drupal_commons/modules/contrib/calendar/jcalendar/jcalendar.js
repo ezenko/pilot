@@ -3,7 +3,7 @@ if (Drupal.jsEnabled) {
     // I am assuming that all of the links are refering to an internal node
     
     // add the attribute rel=facebox to all of the links I want to have a popup
-    $('div.view-field > a').attr('class', 'popup');
+    //$('div.view-field > a').attr('class', 'popup');
    
     // on click of a link
     $('a.popup').click(function(a) {

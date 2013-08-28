@@ -14,7 +14,6 @@ function template_preprocess_date_navigation(&$vars) {
   $pos = $view->date_info->date_arg_pos;
   $min_date = is_object($view->date_info->min_date) ? $view->date_info->min_date : date_now();
   $max_date = is_object($view->date_info->max_date) ? $view->date_info->max_date : date_now();
-
   if (empty($view->date_info->hide_nav)) {
     $prev_date = drupal_clone($min_date);
     date_modify($prev_date, '-1 '. $view->date_info->granularity);
@@ -31,7 +30,7 @@ function template_preprocess_date_navigation(&$vars) {
       default:
         $next_arg = date_format($next_date, $format[$view->date_info->granularity]);
         $prev_arg = date_format($prev_date, $format[$view->date_info->granularity]);
-    }
+    } 
     $next_path = str_replace($view->date_info->date_arg, $next_arg, $view->date_info->url);
     $prev_path = str_replace($view->date_info->date_arg, $prev_arg, $view->date_info->url);
     $next_args[$pos] = $next_arg;

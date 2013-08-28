@@ -151,7 +151,7 @@ function imageapi_gd_image_crop(&$image, $x, $y, $width, $height) {
  * @return
  *   TRUE or FALSE, based on success.
  */
-function imageapi_gd_image_resize(&$image, $width, $height) {
+function imageapi_gd_image_resize(&$image, $width, $height) {   
   $res = imageapi_gd_create_tmp($image, $width, $height);
 
   if (!imagecopyresampled($res, $image->resource, 0, 0, 0, 0, $width, $height, $image->info['width'], $image->info['height'])) {
@@ -270,7 +270,7 @@ function imageapi_gd_image_desaturate(&$image) {
  * @return
  *   A GD image handle.
  */
-function imageapi_gd_create_tmp($image, $width, $height) {
+function imageapi_gd_create_tmp($image, $width, $height) { 
   $res = imagecreatetruecolor($width, $height);
 
   if ($image->info['extension'] == 'gif') {

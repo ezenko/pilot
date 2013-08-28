@@ -14,7 +14,7 @@
     </div><!-- /node-top -->
     <?php endif; ?>
 
-    <?php if ($submitted): ?>
+    <?php if ($submitted && !$teaser): ?>
     <div class="meta">
       <span class="submitted"><?php print $submitted ?></span>
     </div>

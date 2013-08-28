@@ -137,9 +137,11 @@ function calendar_part_is_valid($value, $type) {
  *  implementation of hook_block()
  */
 function calendar_block($op = 'list', $delta = 0) {
+  global $user;
   switch ($op) {
     case 'list' :
       $blocks[0]['info'] = t('Calendar Legend.');
+      $blocks[1]['info'] = t('Monthly Calendar.');
       return $blocks;
       break;
     case 'view' :
@@ -149,7 +151,31 @@ function calendar_block($op = 'list', $delta = 0) {
         $content = theme('calendar_stripe_legend');
         $block['content'] = !empty($content) ? '<div class="calendar legend">'. $content .'</div>' : '';
         return $block;
+      case 1:
+        $view = views_get_view('content_event_calendar');
+        $view->set_display('calendar_1');
+        $args = array();
+        $date = (isset($_GET['cal']) ? $_GET['cal'] : date('Y-m') );
+        $args[] = $date;
+        if(arg(0) == 'user'){
+          $uid = arg(1);
+          if(!empty($uid)){
+            $_user = user_load($uid);
+            if(!empty($_user->name))
+              $args[] = $_user->name;  
+              
+            // add UID for user subscriptions  
+            $args[] = $uid;  
+          }
+          else
+            $args[] = $user->uid;  
+        }
+        $view->set_arguments($args);  
+        $block['content'] = $view->render('calendar_1');
+        return $block;  
+        
     }
+    
   }
 }
 
@@ -608,7 +634,6 @@ function calendar_build_nodes(&$view, &$items) {
   // Midnights are determined based on the same timezone as the View uses
   $display_timezone = date_timezone_get($view->date_info->min_date);
   $display_timezone_name = timezone_name_get($display_timezone);
- 
   // Translate the view min and max dates to UTC values
   // so we can compare UTC dates to the view range.
   $min_utc = drupal_clone($view->date_info->min_date);
@@ -698,7 +723,7 @@ function calendar_build_nodes(&$view, &$items) {
     // make sure each individual date field only gets added to the
     // calendar one time.
     $processed = array();
-    $rrule_processed = array();
+    $rrule_processed = array(); 
     foreach ($items as $pos => $item) {
       $delta = !empty($field['delta_field']) && !empty($item->{$field['delta_field']}) ? $item->{$field['delta_field']} : 0;
       $real_field = $field_name;

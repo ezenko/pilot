@@ -1840,7 +1840,7 @@ class views_plugin_display extends views_plugin {
   /**
    * Render this display.
    */
-  function render() {
+  function render() {  
     return theme($this->theme_functions(), $this->view);
   }
 

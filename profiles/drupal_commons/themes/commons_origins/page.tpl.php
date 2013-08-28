@@ -34,14 +34,28 @@
 
       <!-- header-group row: width = grid_width -->
       <div id="header-group-wrapper" class="header-group-wrapper full-width">
-        <div id="header-group" class="header-group row <?php print $grid_width; ?>">
+      <?php
+        $arguments = arg();
+        $style = '';
+        $style_nav = '';
+        if ($arguments[0] == 'user') {
+            $user = user_load(array('uid' => $arguments[1]));
+            $advanced_user = advanced_profile_load($arguments[1]);
+            if (!empty($advanced_user['photo'])) {
+                $style = 'style="height: 320px; background: url(' . imagecache_create_url('top_image', $advanced_user['photo']) . ')"';
+                $style_nav = 'style="position: relative; top: 166px; border-radius: 0 !important;"';
+            } 
+        }
+        
+      ?>
+        <div id="header-group" class="header-group row <?php print $grid_width; ?>" <?php echo $style; ?>>
           <div id="header-group-inner" class="header-group-inner inner clearfix">
-            <?php print $pre_secondary_links; ?>
+            <?php //print $pre_secondary_links; ?>
             
 
             <?php if ($logo || $site_name || $site_slogan): ?>
             <div id="header-site-info" class="header-site-info block">
-              <div id="header-site-info-inner" class="header-site-info-inner inner">
+              <div id="header-site-info-inner" class="header-site-info-inner inner" <?php echo $style_nav; ?>>
                 <?php if ($logo): ?>
                 <div id="logo">
                   <a href="<?php print check_url($front_page); ?>" title="<?php print t('Home'); ?>"><img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" /></a>
@@ -66,19 +80,12 @@
             <?php print $pre_search_box; ?>
               </div><!-- /header-region-inner -->
             </div><!-- /header-region -->
-         <div id="nav-group" class="nav-group clearfix">
+         <div id="nav-group" class="nav-group clearfix" <?php echo $style_nav; ?>>
          <?php print $pre_primary_links_tree; ?>
           </div><!--/nav-group-->
           </div><!-- /header-group-inner -->
         </div><!-- /header-group -->
       </div><!-- /header-group-wrapper -->
-      
-      <div class="breadcrumbs-wrapper full-width">
-        <div class="breadcrumbs-content row <?php print $grid_width; ?>">
-          <?php print $pre_breadcrumb; ?>
-        </div>
-      </div>
-     
 
       <!-- preface-top row: width = grid_width -->
       <?php print $pre_preface_top; ?>
@@ -117,7 +124,10 @@
 
                             <div id="content-inner" class="content-inner block">
                               <div id="content-inner-inner" class="content-inner-inner inner">
-                            <?php if ($title && !$is_front): ?>
+                            <?php 
+                            
+                            $is_user_page = ((sizeof(arg()) === 2) && (arg(0) == 'user'));
+                            if ($title): ?>
                                 <h1 class="title"><?php print $title; ?></h1>
                                 <?php endif; ?>
                                 <?php if  (!empty($group_header_image)): ?>
@@ -128,7 +138,12 @@
                                     </div> <!-- /group-header-text -->
                                   </div><!-- /group-header -->
                                 <?php endif; ?>                                
-                                <?php print $pre_tabs; ?>
+                                <?php
+                                    $args = arg();
+                                    if ($args[0] != 'user' || (sizeof($args) > 2 && $args[2] != 'about')) { 
+                                        print $pre_tabs; 
+                                    }
+                                ?>
                                 <?php if ($content): ?>
                                 <div id="content-content" class="content-content">
                                   <?php print $content; ?>
@@ -136,6 +151,19 @@
                                 </div><!-- /content-content -->
                                 <?php endif; ?>
                               </div><!-- /content-inner-inner -->
+                              
+                              <?php if($is_user_page):?>
+                                <?php print $pre_secondary_links; ?>
+                              <?php endif;?>
+                              
+                              <div class="content-bottom-left-right-wrapper">
+                                  <div id="content-inner-bottom-left" class="content-inner-inner inner content-bottom-left">
+                                    <?php print $content_bottom_left; ?>
+                                  </div>
+                                  <div id="content-inner-bottom-right" class="content-inner-inner inner content-bottom-right">
+                                    <?php print $content_bottom_right; ?>
+                                  </div>
+                              </div>
                             </div><!-- /content-inner -->
                           </div><!-- /content-region-inner -->
                         </div><!-- /content-region -->
@@ -153,14 +181,17 @@
             </div><!-- /main-group -->
           </div><!-- /main-inner -->
         </div><!-- /main -->
+        <div id="footer" class="footer_small">
+            &copy; KLICANGO 2013 | mentions legales 
+        </div>
       </div><!-- /main-wrapper -->
 
       <!-- postscript-bottom row: width = grid_width -->
       <?php print $pre_postscript_bottom; ?>
 
       <!-- footer row: width = grid_width -->
-      <?php print $pre_footer; ?>
-
+      <?php //print $pre_footer; ?>
+        
     </div><!-- /page-inner -->
   </div><!-- /page -->
   <?php print $closure; ?>

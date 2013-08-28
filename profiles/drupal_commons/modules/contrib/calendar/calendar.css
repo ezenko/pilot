@@ -45,8 +45,9 @@
   background-color: #ccc;
 }
 .calendar-calendar td {
-  width: 12%; /* 14% is about 1/7 of total table width */
-  min-width: 12%;
+  width: 125px; /* 14% is about 1/7 of total table width */
+  min-width: 125px;
+  height: 130px;
   border: 1px solid #ccc;
   color: #777;
   text-align: right;
@@ -115,13 +116,13 @@
 
 /*  floating day number div  */
 .calendar-calendar div.day {
-  float: right;
+  float: left;
   text-align: center;
   padding: 0.125em 0.25em 0 0.25em;
   margin: 0;
-  background-color: #f3f3f3;
+  /*background-color: #f3f3f3;
   border: 1px solid gray;
-  border-width: 0 0 1px 1px;
+  border-width: 0 0 1px 1px;*/
   clear:both;
   width:1.5em;
 }
@@ -306,7 +307,7 @@ table.calendar-legend tr.even .stripe {
   border:1px solid #ccc;
 }
 .calendar-calendar td.empty {
-  background:#ccc;
+  background:#F9F9F9;
   border-color:#ccc;
 }
 .calendar-calendar table.mini td.empty {
@@ -314,14 +315,14 @@ table.calendar-legend tr.even .stripe {
   border-color:#fff;
 }
 .calendar-calendar td div.day {
-  border:1px solid #ccc;
+  /*border:1px solid #ccc;
   border-top:none;
-  border-right:none;
+  border-right:none;*/
   margin-bottom:2px;
 }
 .calendar-calendar td .inner div,
 .calendar-calendar td .inner div a {
-  background:#eee;
+  background:#FFF;
 }
 /* Set small font size for all items in calendar div, themes can override this. */
 /* Use x-small instead of em to avoid multiplying effect in nested items. */
@@ -332,14 +333,15 @@ table.calendar-legend tr.even .stripe {
 .calendar-calendar td .inner div.calendar div,
 .calendar-calendar td .inner div.calendar div a {
   border:none;
-  background:#ffc;
+  background:#FFF;
   padding:0 2px;
+  text-align: center;
 }
 .calendar-calendar td .inner div.calendar div.calendar-more,
 .calendar-calendar td .inner div.calendar div.calendar-more a {
-  color:#444;
+  color: rgb(151, 196, 9);
   background:#fff;
-  text-align:right;
+  text-align:center;
 }
 .calendar-calendar td .inner .view-field,
 .calendar-calendar td .inner .view-field a {

@@ -36,8 +36,18 @@
  *   print date_format($calendar_start_date, 'l, j F Y - g:ia');
  * 
  * @see template_preprocess_calendar_month_node.
- */
+ */                       
+ global $user; 
 ?>
+<?php 
+  if(arg(0) == 'user'){
+    $userid = arg(1);
+    if(!empty($userid) && ($userid != $user->uid)){?>
+      <div class="subscribe-event-wrapper">
+        <?php echo l('Subscribe >','notifications/subscribe/'.$user->uid.'/thread/nid/'.$node->nid, array('query'=>drupal_get_destination())); ?>
+      </div>
+<?php }
+  }?>
 <div class="view-item view-item-<?php print $view->name ?>">
   <div class="<?php print $node->date_id; ?> calendar monthview">
     <?php print theme('calendar_stripe_stripe', $node); ?>

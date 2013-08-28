@@ -44,3 +44,20 @@ Drupal.behaviors.equal_height = function (context) {
   elements.css('min-height',height + 'px');
 
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

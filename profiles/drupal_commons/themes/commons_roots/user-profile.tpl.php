@@ -41,6 +41,13 @@
  * @see template_preprocess_user_profile()
  */
 ?>
+<div class="actions block block-commons_profile">
+    <?php 
+        $block = module_invoke('user_relationship_blocks', 'block', 'view', 'actions');
+        print $block['content'];
+    ?>
+</div>
+
 <div class="profile">
   <div class="column-left">
     <?php print $profile['user_picture']; ?>

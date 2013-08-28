@@ -7,7 +7,7 @@
  * @param unknown_type $items
  * @return themed table
  */
-function calendar_build_calendar($view, $items) {
+function calendar_build_calendar($view, $items) {  
   // Remove nodes outside the selected date range.
   $values = array();
   foreach ($items as $delta => $item) {
@@ -150,7 +150,7 @@ function calendar_build_day($curday, $view, $items) {
   $all_day = array();
   $empty = '';
   $link = '';
-  $count = 0;
+  $count = 0;  
   foreach ($items as $date => $day) {
     if ($date == $curday_date) {
       $count = 0;

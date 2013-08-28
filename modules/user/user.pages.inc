@@ -162,8 +162,8 @@ function user_logout() {
 /**
  * Menu callback; Displays a user or user profile page.
  */
-function user_view($account) {
-  drupal_set_title(check_plain($account->name));
+function user_view($account) {    
+  drupal_set_title(l(check_plain($account->name), 'user/' . $account->uid . '/about'));
   // Retrieve all profile fields and attach to $account->content.
   user_build_content($account);
 
@@ -181,6 +181,7 @@ function user_view($account) {
  * @see user-picture.tpl.php
  */
 function template_preprocess_user_profile(&$variables) {
+    
   $variables['profile'] = array();
   // Sort sections by weight
   uasort($variables['account']->content, 'element_sort');

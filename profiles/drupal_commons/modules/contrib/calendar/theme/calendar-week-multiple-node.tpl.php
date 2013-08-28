@@ -21,7 +21,7 @@
         </div>    
     </div>
     <?php else: ?>
-      <div class="calendar-more"><?php print l(t('more'), $link) ?>»</div>
+     <div class="calendar-more"><?php print l('+'.($count-1).' '.t('event(s)'), $link) ?></div>
     <?php endif; ?>
   </div>    
 </div>

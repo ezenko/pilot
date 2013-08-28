@@ -236,7 +236,6 @@ function file_copy(&$source, $dest = 0, $replace = FILE_EXISTS_RENAME) {
 
   $directory = $dest;
   $basename = file_check_path($directory);
-
   // Make sure we at least have a valid directory.
   if ($basename === FALSE) {
     $source = is_object($source) ? $source->filepath : $source;

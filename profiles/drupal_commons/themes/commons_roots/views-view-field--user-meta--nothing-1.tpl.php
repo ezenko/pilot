@@ -6,4 +6,4 @@
    */
 ?>
 <?php global $user; ?>
-<?php print l(t('My account'), "user/{$user->uid}"); ?>
+<?php print l(t('Edit My account'), "user/{$user->uid}/edit"); ?>

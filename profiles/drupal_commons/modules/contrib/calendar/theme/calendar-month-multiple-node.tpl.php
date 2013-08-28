@@ -6,7 +6,7 @@
  * 
  * 
  * @see template_preprocess_calendar_month_multiple_node.
- */
+ */      
 ?>
 <div class="view-item view-item-<?php print $view->name ?>">
   <div class="<?php print $curday; ?> calendar monthview">
@@ -22,7 +22,7 @@
         </div>    
     </div>
     <?php else: ?>
-      <div class="calendar-more"><?php print l(t('more'), $link) ?>»</div>
+      <div class="calendar-more"><?php print l('+'.($count-1).' '.t('event(s)'), $link) ?></div>
     <?php endif; ?>
   </div>    
 </div>

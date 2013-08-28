@@ -10,12 +10,11 @@ function template_preprocess_calendar_main(&$vars) {
   $result   = (array) $view->result;
   $options  = $view->style_plugin->options;
   $handler  = $view->style_plugin;
-
   $vars['display_type'] = $view->date_info->granularity;
   $vars['min_date_formatted'] = !empty($view->date_info->min_date) ? date_format($view->date_info->min_date, DATE_FORMAT_DATETIME) : '';
   $vars['max_date_formatted'] = !empty($view->date_info->end_date) ? date_format($view->date_info->max_date, DATE_FORMAT_DATETIME) : '';
   $view->date_info->mini = isset($view->date_info->mini) ? $view->date_info->mini : $view->date_info->granularity == 'year';
-  
+                                    
   $url = $view->get_url();
   $view->date_info->url = $url;
   $arg = $view->date_info->date_arg;
@@ -97,7 +96,7 @@ function template_preprocess_calendar_main(&$vars) {
 function template_preprocess_calendar(&$vars) {
   require_once('./'. drupal_get_path('module', 'calendar') .'/includes/calendar.inc');
   $view     = $vars['view'];
-
+  
   // Make sure we only run through this function one time.
   if (!empty($view->date_info->calendar_processed)) {
     return;
@@ -115,7 +114,6 @@ function template_preprocess_calendar(&$vars) {
   $items = array();
   $calendar_fields = date_api_fields($view->base_table);
   $calendar_fields = array_keys($calendar_fields['alias']);
-  
   foreach ($result as $num => $row) {
     $copy = drupal_clone($row);
     $items[$num] = $row;
@@ -718,7 +716,7 @@ function theme_calendar_stripe_stripe($node) {
   if(is_array($node->stripe_label)){
     foreach($node->stripe_label as $k => $stripe_label){
       if(!empty($node->stripe[$k]) && !empty($stripe_label)) {
-        $GLOBALS['calendar_stripes'][$stripe_label] = $node->stripe[$k];
+        $GLOBALS['calendar_stripes'][$stripe_label] = $node->stripe[$k];  
         $output.= '<div style="background-color:'. $node->stripe[$k] .';color:'. $node->stripe[$k] .'" class="stripe" title="Key: '. $node->stripe_label[$k] .'">&nbsp;</div>'."\n";
       }
     }

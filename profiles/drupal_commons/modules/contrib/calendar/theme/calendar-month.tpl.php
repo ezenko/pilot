@@ -18,7 +18,7 @@
  *   it is in the form: calendar-nid-field_name-delta
  * 
  */
-//dsm('Display: '. $display_type .': '. $min_date_formatted .' to '. $max_date_formatted);
+//dsm('Display: '. $display_type .': '. $min_date_formatted .' to '. $max_date_formatted);    
 ?>
 <div class="calendar-calendar"><div class="month-view">
 <table>
@@ -32,7 +32,8 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach ((array) $rows as $row): ?>
+    <?php 
+    foreach ((array) $rows as $row): ?>
       <tr>
         <?php foreach ($row as $cell): ?>
           <td id="<?php print $cell['id']; ?>" class="<?php print $cell['class']; ?>">
@@ -44,3 +45,4 @@
   </tbody>
 </table>
 </div></div>
+<div class="add-event-wrapper"><a href="/node/add/event">Add New Event</a></div>
