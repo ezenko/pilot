@@ -16,9 +16,19 @@ function customization_menu(){
     'access callback' => 'user_is_logged_in'
   );
   
+  $items['main'] = array(
+    'type' => MENU_CALLBACK,
+    'page callback' => 'customization_front',
+    'access callback' => true,
+  );
+  
   return $items;
   
   
+}
+
+function customization_front() {
+    return '';
 }
 
 function customization_form_alter(&$form, &$form_state, $form_id) {
@@ -157,7 +167,7 @@ function customization_block($op = 'list', $delta = 0, $edit = array()) {
 
 function customization_init() {
     if (!user_is_logged_in() && ($_GET['q'] != 'user/login' && $_GET['q'] != 'user/register') && ($_GET['q'] != 'fboauth/connect')) {
-        drupal_goto('user/login');
+        //drupal_goto('main');
     }
 }
 
