@@ -10,7 +10,7 @@
 
 function advanced_profile_menu() {
   $items = array();
-    $items['admin/settings/advanced_profile'] = array(
+  $items['admin/settings/advanced_profile'] = array(
     'title' => 'Advanced profile settings',
     'description' => 'Select what roles will have advanced profile.',
     'page callback' => 'drupal_get_form',
@@ -18,6 +18,24 @@ function advanced_profile_menu() {
     'access arguments' => array('manage advanced profile'),
     'type' => MENU_NORMAL_ITEM,
     'file' => 'advanced_profile.admin.inc',
+  );
+  
+  $items['user/end_register'] = array(
+    'title' => 'User registration',
+    'description' => 'End user registration.',
+    'page callback' => 'advanced_profile_display_end_form',
+    'page arguments' => array(1),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
+  );
+  
+  $items['user/professional_register'] = array(
+    'title' => 'User registration',
+    'description' => 'Professional user registration.',
+    'page callback' => 'advanced_profile_display_form',
+    'page arguments' => array(1),
+    'access arguments' => array('access content'),
+    'type' => MENU_CALLBACK,
   );
     
   return $items;
@@ -28,6 +46,15 @@ function advanced_profile_menu() {
 */
 function advanced_profile_perm () {
   return array('manage advanced profile');
+}
+
+
+function advanced_profile_display_form(&$form, &$form_state) {
+    if($_GET['type'] == 'professional') {
+        return theme('advanced_profile_professional_user_register', $data);
+    } else {
+        return theme('advanced_profile_end_user_register', $data);
+    }
 }
 
 function advanced_profile_form_user_profile_form_alter(&$form, &$form_state) {
@@ -124,3 +151,19 @@ function advanced_profile_load ($uid) {
   return db_fetch_array($result);
 }
 
+function advanced_profile_theme(){
+    return array(
+        'advanced_profile_professional_user_register' => array(
+        	'arguments' => array(
+        		'data' => NULL,
+        	),
+        	'template' => 'themes/professional_user_register',
+        ),
+        'advanced_profile_end_user_register' => array(
+        	'arguments' => array(
+        		'data' => NULL,
+        	),
+        	'template' => 'themes/end_user_register',
+        ),
+    );
+}
