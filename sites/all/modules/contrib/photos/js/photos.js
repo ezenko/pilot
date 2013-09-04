@@ -71,13 +71,13 @@ Drupal.behaviors.photos = function (context) {
   },function(){
     $(this).removeClass('photos_share_hover');
   })
-  $('#photos_share_ul li select[@class="photos_share_select_val"]').change(function(){
+  $('#photos_share_ul li select[class="photos_share_select_val"]').change(function(){
     $(this).parents('li')[ $(this).val() != 0 ? 'addClass' : 'removeClass' ]('photos_share_selected');
   });
   $('a.photos_share_copy').click(function(){
     var alt = $(this).attr('alt');
     var text = '';
-    $('#photos_share_ul li select[@class="photos_share_select_val"]').each(function(){
+    $('#photos_share_ul li select[class="photos_share_select_val"]').each(function(){
       if($(this).val() != 0){
         if(alt == 'ubb'){
           text += '[photo=image]id=' + $(this).attr('alt') + '|label=' + $('option:selected', this).text() + '[/photo]\n';
@@ -90,13 +90,13 @@ Drupal.behaviors.photos = function (context) {
     $('.photos_share_textarea').show(300);
     return false;
   });
-	$('input[@class="image-quote-link"], .photos_share_textarea').click(function(){
+	$('input[class="image-quote-link"], .photos_share_textarea').click(function(){
 		$(this).select();
 	}); 
-	$('input[@class="photos-p"]').change(function() {
+	$('input[class="photos-p"]').change(function() {
 		i = 0;
 		$('#edit-insert-wrapper').show(500);
-		$("input[@class='photos-p'],input[@class='photos-pp']").each(function() {
+		$("input[class='photos-p'],input[class='photos-pp']").each(function() {
 			if($(this).attr("checked")) {
 				t = $(this).val().split('&&&');
 				img = '<a class="image-quote" href="http://' + window.location.host +'/photos/image/' + t[2] + '">' + '<img alt="' + t[1] + '" src="' + t[0] + '" /></a>\n';
