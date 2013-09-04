@@ -74,17 +74,16 @@ function commons_event_strongarm() {
   $strongarm->api_version = 1;
   $strongarm->name = 'content_extra_weights_event';
   $strongarm->value = array(
-    'title' => '-5',
-    'body_field' => '-3',
-    'revision_information' => '3',
-    'author' => '7',
-    'options' => '8',
-    'comment_settings' => '5',
-    'menu' => '4',
-    'taxonomy' => '-1',
-    'path' => '6',
-    'flag' => '1',
-    'og_nodeapi' => '2',
+    'title' => '37',
+    'revision_information' => '45',
+    'author' => '49',
+    'options' => '50',
+    'comment_settings' => '47',
+    'menu' => '46',
+    'taxonomy' => '41',
+    'path' => '48',
+    'flag' => '43',
+    'og_nodeapi' => '44',
   );
   $export['content_extra_weights_event'] = $strongarm;
 

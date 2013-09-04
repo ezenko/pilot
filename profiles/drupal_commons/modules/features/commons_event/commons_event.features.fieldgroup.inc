@@ -35,10 +35,13 @@ function commons_event_fieldgroup_default_groups() {
         'description' => '',
       ),
     ),
-    'weight' => '-4',
+    'weight' => '39',
     'fields' => array(
-      '0' => 'field_date',
-      '1' => 'field_location',
+      '0' => 'field_location',
+      '1' => 'field_date',
+      '2' => 'field_event_email',
+      '3' => 'field_event_contact_phone',
+      '4' => 'field_event_gratuity',
     ),
   );
 
@@ -83,7 +86,7 @@ function commons_event_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '-2',
+    'weight' => '40',
     'fields' => array(
       '0' => 'field_content_images',
     ),
@@ -130,7 +133,7 @@ function commons_event_fieldgroup_default_groups() {
         ),
       ),
     ),
-    'weight' => '0',
+    'weight' => '42',
     'fields' => array(
       '0' => 'field_group_sticky',
       '1' => 'field_featured_content',
